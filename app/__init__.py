@@ -1,7 +1,6 @@
 # app.py or app/__init__.py
 import os
-from flask import Flask, flash, jsonify, request, redirect, url_for, send_from_directory, render_template
-from werkzeug.utils import secure_filename
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 

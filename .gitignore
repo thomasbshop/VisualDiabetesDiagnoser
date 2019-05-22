@@ -105,6 +105,7 @@ venv.bak/
 
 # my shell script
 start.sh
+app.ini
 
 # db
 alembic.ini
