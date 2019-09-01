@@ -108,4 +108,4 @@ start.sh
 
 # db
 alembic.ini
-postgrs-data/
+postgres-data/
