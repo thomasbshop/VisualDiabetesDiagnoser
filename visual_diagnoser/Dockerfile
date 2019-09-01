@@ -8,7 +8,8 @@ WORKDIR /app
 ADD . /app
 
 # Install the dependencies
+RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # run the command to start uWSGI
-CMD ["uwsgi", "app.ini"]
+CMD ["uwsgi", "visualdiagnoser.ini"]

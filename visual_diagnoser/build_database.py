@@ -42,3 +42,24 @@ db.session.commit()
 # Alembic is a database migration tool created specifically for use with SQLAlchemy. 
 # It lets us keep a versioned history of our database schema so that we can later upgrade 
 # to a new schema and even downgrade back to an older one.
+
+def get_all(model):
+	data = model.query.all()
+	return data
+
+def add_instance(model, id):
+	model.query.filter_by(id=id).delete()
+	commit_changes()
+
+def delete_instance(model, id):
+	model.query.filter_by(id=id).delete()
+	commit_changes()
+
+def edit_instance(model, id, **kwargs):
+	instance = model.query.filter_by(id=id).all()[0]
+	for attr, new_value in kwargs:
+		setattr(instance, attr, new_value)
+	commit_changes
+
+def commit_changes():
+	db.session.commit()

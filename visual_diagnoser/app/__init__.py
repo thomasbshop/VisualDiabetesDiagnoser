@@ -9,6 +9,8 @@ from flask_marshmallow import Marshmallow
 
 app = Flask(__name__, instance_relative_config=True)
 basedir = os.path.abspath(os.path.dirname(__file__))
+
+
 # Load the default configuration
 app.config.from_object('config.default')
 
@@ -18,10 +20,10 @@ app.config.from_pyfile('config.py')
 # Load the file specified by the APP_CONFIG_FILE environment variable
 # The value of the environment variable should be the absolute path to a configuration file.
 # Variables defined here will override those in the default configuration
-app.config.from_envvar('APP_CONFIG_FILE')
+# app.config.from_envvar('APP_CONFIG_FILE')
 
 app.config["BASEDIR"]
-
+app.secret_key = app.config['SECRET_KEY']
 # Now we can access the configuration variables via app.config["VAR_NAME"].
 app.config["SQLALCHEMY_ECHO"]
 app.config["SQLALCHEMY_DATABASE_URI"]

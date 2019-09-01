@@ -10,13 +10,6 @@ from . import models
 from .ai_model.make_prediction import predict
 
 
-# port
-# port = int(os.getenv("PORT", 9099))
-# port = int(os.getenv("VCAP_APP_PORT"))
-
-# Use os.getenv("key") to get environment variables
-# app_name = os.getenv("APP_NAME")
-
 # Use os.getenv("key") to get environment variables
 app_name = os.getenv("APP_NAME")
 
@@ -57,6 +50,7 @@ def add_profile():
 	        flash('No file part')
 	        # return redirect(request.url)
 	        return jsonify({"description":"no file part"})
+	        # return json.dumps("no file part."), 201
 	        
 	    file = request.files['image']
 	    # if user does not select file, browser also
@@ -65,6 +59,7 @@ def add_profile():
 	        flash('No selected file')
 	        # return redirect(request.url)
 	        return jsonify({"description":"no selected file"})
+	        # return json.dumps("no selected file."), 202
 
 	    if file and allowed_file(file.filename):
 	        filename = secure_filename(file.filename)
@@ -122,9 +117,9 @@ def new_prediction():
 	        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
 	        # make the prediction
 	        prediction = predict(file_path)
+	        results = str(prediction)
 
-
-	        new_profile = models.ImageProfile(lname, fname, image_name, str(prediction), description)
+	        new_profile = models.ImageProfile(lname, fname, image_name, results, description)
 
 	        db.session.add(new_profile)
 	        db.session.commit()
