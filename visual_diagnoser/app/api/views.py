@@ -4,11 +4,25 @@ from werkzeug.utils import secure_filename
 
 
 # custom
-from . import app
-from . import db
-from . import models
-from .ai_model.make_prediction import predict
+from app import app
+from app import db
+from app import models
+from ..ai_model.make_prediction import predict
 
+# upload folder
+basedir = app.config["BASEDIR"]
+UPLOAD_FOLDER = os.path.join(basedir, 'uploads')
+# UPLOAD_FOLDER = os.path.basename('uploads')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg'])
+
+
+# fun to check the file type
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           
 
 @app.route('/api/upload', methods=['GET', 'POST'])
 def add_profile():

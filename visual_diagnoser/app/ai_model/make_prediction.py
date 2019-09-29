@@ -6,7 +6,7 @@ from .. import app
 
 #load saved model file
 basedir = app.config["BASEDIR"]
-MODEL_FOLDER = os.path.join(basedir, 'app/ai_model/saved_models')
+MODEL_FOLDER = os.path.join(basedir, 'ai_model/saved_models')
 app.config['MODEL_FOLDER'] = MODEL_FOLDER
 model_file_name = 'keras_model.h5'
 model_path = os.path.join(app.config['MODEL_FOLDER'], model_file_name)
