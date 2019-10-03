@@ -9,6 +9,8 @@ from . import db
 from . import models
 from .ai_model.make_prediction import predict
 
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'hard to guess string'
 
 # Use os.getenv("key") to get environment variables
 app_name = os.getenv("APP_NAME")
@@ -46,3 +48,10 @@ def home():
 #     return send_from_directory(app.config['UPLOAD_FOLDER'],
 #                                filename)
 
+@app.errorhandler(404)
+def page_not_found(e):
+	return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+	return render_template('500.html'), 500
