@@ -1,10 +1,8 @@
 # import os
-# from flask import Flask
+from flask import Flask
 # # from flask_wtf.csrf import CSRFProtect
-# from flask_sqlalchemy import SQLAlchemy
 # # from flask_migrate import Migrate
 from flask_marshmallow import Marshmallow
-from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_moment import Moment
@@ -30,10 +28,17 @@ def create_app(config_name):
     db.init_app(app)
     ma.init_app(app)
 
+    # registration of blueprints
+    # Adding a prefix when registering the blueprint is a good idea because it 
+    # eliminates the need to hardcode the version number in every blueprint route.
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
+    from .api import api as api_blueprint
+    app.register_blueprint(api_blueprint, url_prefix='/api/v1')
+
     return app
+

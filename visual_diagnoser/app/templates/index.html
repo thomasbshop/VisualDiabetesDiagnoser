@@ -1,78 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Flasky - Server error!{% endblock %}
+{% block title %}Visual Diagnoser{% endblock %}
 
 {% block page_content %}
-<body>
-  <div id="preloader">
-    <div id="ctn-preloader" class="ctn-preloader">
-      <div class="animation-preloader">
-        <div class="spinner"></div>
-      </div>
-      <div class="loader">
-        <div class="row">
-          <div class="col-3 loader-section section-left">
-            <div class="bg"></div>
-          </div>
-          <div class="col-3 loader-section section-left">
-            <div class="bg"></div>
-          </div>
-          <div class="col-3 loader-section section-right">
-            <div class="bg"></div>
-          </div>
-          <div class="col-3 loader-section section-right">
-            <div class="bg"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="body_wrapper">
-    <header class="header_area">
-      <nav class="navbar navbar-expand-lg menu_one menu_four hosting_menu">
-        <div class="container">
-          <a class="navbar-brand sticky_logo" href="index.html"><img src="static/images/logo/logo2.png" srcset="static/images/logo2x-2.png 2x" alt="logo" style="height: 30px;"><img src="static/images/logo/logo2.png" srcset="static/images/logo2x.png 2x" alt="" style="height: 30px;"></a>
-          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="menu_toggle">
-              <span class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-              <span class="hamburger-cross">
-                <span></span>
-                <span></span>
-              </span>
-            </span>
-          </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav menu w_menu ml-auto">
-              <li class="nav-item dropdown submenu mega_menu mega_menu_two active">
-                <a class="nav-link dropdown-toggle" href="index.html" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  GET DIAGNOSED
-                </a>
-              </li>
-              <li class="nav-item dropdown submenu mega_menu">
-                <a class="nav-link dropdown-toggle" href="diagnoser.html">
-                  DIAGNOSER
-                </a>
-              </li>
-              <li class="nav-item dropdown submenu mega_menu">
-                <a class="nav-link dropdown-toggle" href="#m1">
-                  MISSION
-                </a>
-              </li>
-              <li class="nav-item dropdown submenu">
-                <a class="nav-link dropdown-toggle" href="#appo1">
-                  BOOK APPOINTMENT
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
     <section class="hosting_banner_area">
       <div class="pos_slider owl-carousel">
         <div class="pos_banner_item" style="background:url(static/images/patient/vd.png)"></div>
@@ -210,45 +141,7 @@
         </div>
       </div>
     </section>
-    <footer class="footer_area h_footer_dark">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="f_widget dark_widget company_widget">
-              <a href="index.html" class="f-logo"><img src="static/images/logo/flogo.png" alt="" style="height: 30px;"></a>
-              <p>© 2019 Visual Diagnoser. All rights reserved.</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="f_widget dark_widget about-widget pl_70">
-              <ul class="list-unstyled f_list">
-                <li><a href="index.html">Get Diagnosed</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="f_widget dark_widget about-widget pl_20">
-              <ul class="list-unstyled f_list">
-                <li><a href="diagnoser.html">Diagnoser</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-6">
-            <div class="f_widget dark_widget about-widget pl_20">
-              <ul class="list-unstyled f_list">
-                <li><a href="javascript::void()">Support</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-    </footer>
-
-
-  </div>
-</body>
+    
 {% endblock %}
 
 	
