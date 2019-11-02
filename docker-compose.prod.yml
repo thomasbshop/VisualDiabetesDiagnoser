@@ -1,0 +1,67 @@
+version: "3.7"
+
+services:
+
+  db:
+    container_name: visualdiagnoserdb
+    restart: always
+    image: postgres:latest
+    env_file: .env-postgres
+    # build: ./postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+    networks:
+      - psqlnet
+
+  web:
+    build: .
+    container_name: visual_diagnoser
+    restart: always
+    ports:
+      - "8000:5000"
+    depends_on:
+      - db
+    env_file:
+      - .env-docker
+    expose:
+      - 5000
+    command: gunicorn --bind 0.0.0.0:5000 visual_diagnoser:app
+    volumes:
+      - ./var/log/uwsgi:/var/log/uwsgi
+    networks:
+      - psqlnet
+      - backend
+
+  nginx:
+    restart: always
+    # image:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - .:/www/static
+      - var:/var/log/nginx
+    depends_on:
+      - web
+    networks:
+      - backend
+
+  data:
+    image: postgres:latest
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    command: "true"
+
+networks:
+  psqlnet:
+    name: db_net
+  backend:
+    name: backend_net
+
+volumes:
+  postgres-data:
+  uploads:
+  db-data:

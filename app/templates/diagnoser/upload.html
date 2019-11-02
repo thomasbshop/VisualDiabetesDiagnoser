@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Visual Diagnoser - Upload Image{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/header.css') }}">
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+  <!-- Content here -->
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div class="page-header">
+        <form id="uploadRetinaForm"class="needs-validation" action="/diagnoser" method="POST" enctype="multipart/form-data">
+          {{ form.csrf_token }}
+          <div class="form-row">
+            <div class="file-upload">        
+              <div class="image-upload-wrap">
+                <input class="file-upload-input" id="image" name="image" type='file' onchange="readURL(this);" accept="image/*" required />
+                <div class="drag-text">
+                  <h3>Drop image (Or click)</h3>
+                </div>
+              </div>
+              <div class="file-upload-content">
+                <img class="file-upload-image" src="#" alt="your image" />
+                <div class="image-title-wrap">
+                  <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3 form-group">
+              {{ form.firstname.label }} {{ form.firstname(class_='form-control', placeholder='firstname', size=20, required=form.firstname.flags.required) }}
+            </div>
+            <div class="col-md-6 mb-3 form-group">
+             {{ form.lastname.label }} {{ form.lastname(class_='form-control', placeholder='lastname', size=20, required=form.lastname.flags.required) }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-12 mb-3 form-group">
+              {{form.description.label}} {{form.description(class='form-control', placeholder='Short description...', required=form.description.flags.required)}}
+            </div>
+          </div>
+          <div class="form-row">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button class="btn btn-warning" type="reset" onclick="removeUpload()" >Reset</button>
+          </div>
+        </form>
+        </div>
+    </div>
+    <div class="col-6 col-md-4" >
+      <div class="card border-light mb-3" style="top: 70px; max-width: 30rem; margin: auto;">
+        <div class="card-header">Results</div>
+        <div class="card-body text-secondary">
+          <!-- <h5 class="card-title">Results</h5> -->
+            <address class="card-text">
+              <p><b>Full Name:</b><span id="showFullName"></span></p>
+              <p><b>Image:</b><span id="showImageName"></span></p>
+              <p><b>Result:</b><span id="showResult"></span></p>
+              <p><b>Description:</b></p><p id="showDescription"></p>
+          </address>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+  <script src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+{% endblock %}
